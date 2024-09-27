@@ -1,5 +1,7 @@
 package exercise1;
 
+import javax.swing.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -73,7 +75,35 @@ public class Test {
         return response;
     }
     public void inputAnswer() {
+        String[][] questions = generateQuestions();
+        int correctAnswers = 0;
+        int totalQuestions = questions.length;
 
+        for (int i = 0; i < totalQuestions; i++) {
+            String question = questions[i][0];
+            String[] options = {questions[i][1], questions[i][2], questions[i][3], questions[i][4]};
+
+            // Show question and get input
+            String userInput = (String) JOptionPane.showInputDialog(null, question, "Question " + (i + 1),
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            // Check option
+            int selectedOption = Arrays.asList(options).indexOf(userInput);
+            System.out.println(selectedOption);
+
+            // Check if the answer is correct and display the result
+            boolean isCorrect = checkAnswer(i, selectedOption);
+            String feedback = generateMessage(isCorrect);
+            JOptionPane.showMessageDialog(null, feedback);
+
+            // Update the correct answers count
+            if (isCorrect) {
+                correctAnswers++;
+            }
+        }
+        // Final result
+        JOptionPane.showMessageDialog(null,
+                "Final Result: " + correctAnswers + " out of " + totalQuestions + " correct.\nYour score: "
+                        + ((correctAnswers / (double) totalQuestions) * 100) + "%");
     }
-
 }
