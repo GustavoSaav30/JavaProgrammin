@@ -1,19 +1,17 @@
 package exercise3;
 
 public class User {
-    String  name;
 
-    public void setName(String firstName) {
-        this.name = firstName;
-    }
-    public void setName(String firstName, String lastName) {
-        this.name = String.format("%s %s", firstName, lastName);
-    }
-    public void setName(String firstName, String lastName, String middleName) {
-        this.name = String.format("%s %s %s", firstName, middleName, lastName);
+    public static String screamName(String firstName) {
+        return firstName;
     }
 
-    public String getName() {
-        return name;
+    public static String screamName(String firstName, String lastName) {
+        return String.format("%s %s", firstName, lastName).toUpperCase();
     }
+
+    public static String screamName(String firstName, String middleName, String lastName) {
+        return String.format("%s %s %s", firstName, middleName, lastName).toUpperCase();
+    }
+
 }
