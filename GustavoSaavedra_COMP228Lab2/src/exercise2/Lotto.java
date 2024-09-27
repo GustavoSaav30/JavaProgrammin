@@ -35,5 +35,31 @@ public class Lotto {
                 "5. If you match the sum within 5 attempts, you win. If not, the computer wins!");
         String input = JOptionPane.showInputDialog("Enter a number between 3 and 27:");
         int chosenNumber = Integer.parseInt(input);
+
+        boolean userVictory = false;
+
+        // Looping five times
+        for (int attempt = 1; attempt <= 5; attempt++) {
+            //generates new random numbers
+            Lotto lotto = new Lotto();
+            int lottoSum = lotto.sumNumbers();
+            int[] numbers = lotto.getNumbers();
+
+            // Display the random numbers and their sum
+            String lottoNumbersString = String.format("Lotto random numbers: %d, %d, %d\nSum: %d", numbers[0], numbers[1], numbers[2], lottoSum);
+            JOptionPane.showMessageDialog(null, lottoNumbersString, "Lotto Game", JOptionPane.INFORMATION_MESSAGE);
+
+            // Check if user number of choice is the game sum number
+            if (chosenNumber == lottoSum) {
+                JOptionPane.showMessageDialog(null, "Congratulations! You won the lotto game!", "Winner chicken dinner", JOptionPane.INFORMATION_MESSAGE);
+                userVictory = true;
+                break;
+            }
+        }
+
+        if (!userVictory) {
+            JOptionPane.showMessageDialog(null, "Sorry, you lost! The computer won this game.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
+
