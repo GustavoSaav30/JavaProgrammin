@@ -16,4 +16,12 @@ public class Lotto {
     public int[] getNumbers() {
         return numbers;
     }
+
+    public int sumNumbers() {
+        int sum = 0;
+        for (int num : numbers) {
+            sum = num + sum;
+        }
+        return sum;
+    }
 }
