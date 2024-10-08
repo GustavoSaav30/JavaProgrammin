@@ -2,7 +2,7 @@ package exercise1;
 
 public abstract class Insurance {
     private String type;
-    private double monthlyCost;
+    protected double monthlyCost;
 
     public Insurance(String insuranceType) {
         this.type = insuranceType;
@@ -16,6 +16,6 @@ public abstract class Insurance {
         return type;
     }
 
-    public abstract void setInsuranceCost();
+    public abstract void setInsuranceCost(double monthlyCost);
     public abstract void displayInfo();
 }
