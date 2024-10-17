@@ -13,7 +13,7 @@ public class Life extends Insurance {
 
     @Override
     public void displayInfo() {
-        System.out.println(getType());
-        System.out.println(getMonthlyCost());
+        System.out.println("Insurance type: " + getType());
+        System.out.println("Monthly bill: $" + getMonthlyCost());
     }
 }
