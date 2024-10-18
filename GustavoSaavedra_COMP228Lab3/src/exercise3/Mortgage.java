@@ -11,9 +11,10 @@ public abstract class Mortgage implements MortgageConstants {
         this.mortgageNumber = mortgageNumber;
         this.customerName = customerName;
         if (mortgageAmount > MAX_MORTGAGE) {
-            throw new IllegalArgumentException("Mortgage amount cannot exceed $" + MAX_MORTGAGE);
+            this.mortgageAmount = MAX_MORTGAGE; // mortgage higher now goes up to 300000
+        } else {
+            this.mortgageAmount = mortgageAmount;
         }
-        this.mortgageAmount = mortgageAmount;
         this.interestRate = interestRate;
 
         if (term != SHORT && term != MEDIUM && term != LONG) {
