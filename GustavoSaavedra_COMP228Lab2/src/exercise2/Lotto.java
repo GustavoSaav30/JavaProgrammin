@@ -7,17 +7,20 @@ public class Lotto {
     private int[] numbers;
 
     public Lotto() {
+        // instatiate the array of numbers with 3 number
         numbers = new int[3];
+        // random object
         Random rand = new Random();
+        // getting a random number from 0 to 9 for each index and assigning it to the number
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = rand.nextInt(9) + 1;
         }
     }
-
+    //get array of numbers
     public int[] getNumbers() {
         return numbers;
     }
-
+    // method returns the sum of the array
     public int sumNumbers() {
         int sum = 0;
         for (int num : numbers) {

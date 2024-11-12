@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Test {
+    //instancianting a new random object so can use to generate random numbers
     Random random = new Random();
 
     public String[][] generateQuestions() {
@@ -50,10 +51,13 @@ public class Test {
 
         return questionsArray;
     }
+    //checks the answer
     public boolean checkAnswer(Integer questionIndex, Integer userOption) {
         Integer[] correctOptions = {0,2,0,0,0};
         return correctOptions[questionIndex].equals(userOption);
     }
+
+    // generate random messages
     public String generateMessage(boolean isCorrect) {
         int index = random.nextInt(4); // Generate a random number between 0 and 3
         String response = "";
@@ -74,6 +78,7 @@ public class Test {
         }
         return response;
     }
+    //inputs
     public void inputAnswer() {
         String[][] questions = generateQuestions();
         int correctAnswers = 0;
