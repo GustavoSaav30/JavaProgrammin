@@ -79,7 +79,7 @@ public class StudentApp extends Application {
 
         radioBusiness.setOnAction(e -> {
             dropdownCourses.getItems().clear();
-            dropdownCourses.getItems().addAll("Economics", "Finance", "Marketing");
+            dropdownCourses.getItems().addAll("Business 1", "Business 2", "Business 3");
         });
 
         dropdownCourses.setOnAction(e -> {
@@ -91,22 +91,69 @@ public class StudentApp extends Application {
         });
 
         inputForm.addRow(0, labelName, textName);
-        inputForm.add(labelAddress, 0, 1);
-        inputForm.add(textAddress, 1, 1);
-        inputForm.add(labelProvince, 0, 2);
-        inputForm.add(textProvince, 1, 2);
-        inputForm.add(labelCity, 0, 3);
-        inputForm.add(textCity, 1, 3);
-        inputForm.add(labelPostalCode, 0, 4);
-        inputForm.add(textPostalCode, 1, 4);
-        inputForm.add(labelPhone, 0, 5);
-        inputForm.add(textPhone, 1, 5);
-        inputForm.add(labelEmail, 0, 6);
-        inputForm.add(textEmail, 1, 6);
+        inputForm.addRow(1, labelAddress, textAddress);
+        inputForm.addRow(2, labelProvince, textProvince);
+        inputForm.addRow(3, labelCity, textCity);
+        inputForm.addRow(4, labelPostalCode, textPostalCode);
+        inputForm.addRow(5, labelPhone, textPhone);
+        inputForm.addRow(6, labelEmail, textEmail);
         inputForm.add(checkboxCouncil, 2, 1);
         inputForm.add(boxMajor, 3, 0);
         inputForm.add(checkboxVolunteer, 2, 5);
         inputForm.add(boxCourses, 3, 1, 1, 6);
 
+
+        TextArea areaDisplay = new TextArea();
+        areaDisplay.setEditable(false);
+        areaDisplay.setWrapText(false);
+
+        // Adjust the size for better readability and scrolling
+        areaDisplay.setPrefSize(1200, 800);
+
+        ScrollPane paneScroll = new ScrollPane(areaDisplay);
+        paneScroll.setPrefHeight(200);
+        paneScroll.setPrefWidth(600);
+        paneScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        paneScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        Button buttonShow = new Button("Display");
+        buttonShow.setOnAction(e -> {
+            StringBuilder studentInfo = new StringBuilder();
+            studentInfo.append(textName.getText()).append(", ");
+            studentInfo.append(textAddress.getText()).append(", ");
+            studentInfo.append(textCity.getText()).append(", ");
+            studentInfo.append(textProvince.getText()).append(", ");
+            studentInfo.append(textPostalCode.getText()).append(", ");
+            studentInfo.append(textPhone.getText()).append(", ");
+            studentInfo.append(textEmail.getText()).append("\n");
+
+            studentInfo.append("Major: ");
+            if (radioCS.isSelected()) {
+                studentInfo.append("Computer Science\n");
+            } else if (radioBusiness.isSelected()) {
+                studentInfo.append("Business\n");
+            }
+
+            studentInfo.append("Courses: ").append(String.join(", ", selectedSubjects)).append("\n");
+
+            studentInfo.append("Activities: ");
+            if (checkboxCouncil.isSelected()) studentInfo.append("Student Council ");
+            if (checkboxVolunteer.isSelected()) studentInfo.append("Volunteer Work");
+
+            areaDisplay.setText(studentInfo.toString());
+        });
+
+        HBox boxButton = new HBox(buttonShow);
+        boxButton.setAlignment(Pos.CENTER);
+        boxButton.setPadding(new Insets(5));
+
+        VBox boxDisplay = new VBox(5, boxButton, paneScroll);
+        boxDisplay.setPadding(new Insets(5));
+
+        layout.setCenter(inputForm);
+        layout.setBottom(boxDisplay);
+
+        mainWindow.setScene(new Scene(layout, 700, 650));
+        mainWindow.show();
     }
 }
