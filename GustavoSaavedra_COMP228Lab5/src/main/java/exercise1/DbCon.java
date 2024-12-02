@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class db {
+public class DbCon {
     private static final String DB_URL = "jdbc:oracle:thin:@199.212.26.208:1521:SQLD";
     private static final String DB_USER = "COMP228_F24_soh_24";
     private static final String DB_PASSWORD = "saavedraSanchez";
